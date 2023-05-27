@@ -6,6 +6,7 @@ Register::Register(QWidget *parent) :
     ui(new Ui::Register)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Register");
 }
 
 Register::~Register()
