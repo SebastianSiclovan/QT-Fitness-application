@@ -16,6 +16,9 @@ set(TS_FILES QT_app_en_GB.ts)
 
 set(PROJECT_SOURCES
         main.cpp
+        register.cpp
+        register.h
+        register.ui
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
