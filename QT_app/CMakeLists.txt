@@ -19,6 +19,9 @@ set(PROJECT_SOURCES
         register.cpp
         register.h
         register.ui
+        login.cpp
+        login.h
+        login.ui
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
