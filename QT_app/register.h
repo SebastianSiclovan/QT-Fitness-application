@@ -2,6 +2,7 @@
 #define REGISTER_H
 
 #include <QDialog>
+#include <QMessageBox>
 
 namespace Ui {
 class Register;
@@ -14,6 +15,11 @@ class Register : public QDialog
 public:
     explicit Register(QWidget *parent = nullptr);
     ~Register();
+
+private slots:
+    bool check_registerFields();
+    bool password_security(QString & obj);
+    void on_pushButton_registerBtn_clicked();
 
 private:
     Ui::Register *ui;
