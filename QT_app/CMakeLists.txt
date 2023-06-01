@@ -17,6 +17,8 @@ set(TS_FILES QT_app_en_GB.ts)
 set(PROJECT_SOURCES
         Interfaces/register_interface.h
         Interfaces/register_interface.cpp
+        database_application.cpp
+        database_application.h
         main.cpp
         register.cpp
         register.h
