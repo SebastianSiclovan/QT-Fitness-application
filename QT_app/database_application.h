@@ -4,13 +4,16 @@
 #include <QtSql>
 
 #include <list>
+#include <QDebug>
 
 
 class Database_application
 {
 public:
     void databaseInit();
-    void database_addUserData(std::list <QString> & user_data);
+    void database_addUserData_atRegister(std::list <QString> & user_data);
+
+    bool verify_userData_atLogin(QString email, QString password);
 
 private:
     QSqlDatabase db;
