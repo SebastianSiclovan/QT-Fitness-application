@@ -8,12 +8,12 @@
 #include <QtSql>
 #include <QDebug>
 
-#include "Login.h"
 
 #include "Interfaces/Register_interface.h"
 
 #include <list>
 
+class Login;
 
 namespace Ui {
 class Register;
@@ -27,6 +27,13 @@ public:
     explicit Register(QWidget *parent = nullptr);
     ~Register();
 
+    void set_firstName(QString fName);
+    void set_lastName(QString lName);
+
+    QString get_firstName();
+    QString get_lastName();
+
+
 private slots:
 
     void on_pushButton_registerBtn_clicked();
@@ -39,7 +46,7 @@ private:
 private:
     Ui::Register *ui;
 
-    Login * redirect_toLogin = new Login();
+    Login * redirect_toLogin;
 
     bool warning_field;
 

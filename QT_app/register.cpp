@@ -1,6 +1,8 @@
 #include "register.h"
 #include "ui_register.h"
 
+#include "Login.h"
+
 Register::Register(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Register)
@@ -14,6 +16,12 @@ Register::~Register()
     delete ui;
     qDebug() << "Destructorul a fost apelat";
 }
+
+QString Register::get_firstName()
+{
+    return this->firstname;
+}
+
 /*
     password_security: function which reiceive password parameter and verify if password have at least one number and one uppercase
     -Return true if password have at least one number and one uppercase

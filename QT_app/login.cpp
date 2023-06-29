@@ -1,6 +1,9 @@
 #include "login.h"
 #include "ui_login.h"
 
+#include "home.h"
+#include "register.h"
+
 Login::Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)
@@ -73,6 +76,11 @@ void Login::on_pushButton_loginBtn_clicked()
 
 void Login::on_pushButton_Register_clicked()
 {
+    redirect_toRegister = new Register();
+    hide();
+
+    redirect_toRegister->show();
+
 
 }
 

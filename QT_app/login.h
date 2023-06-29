@@ -11,7 +11,7 @@
 #include "database_application.h"
 #include "home.h"
 
-
+class Register;
 
 namespace Ui {
 class Login;
@@ -44,6 +44,8 @@ private:
     Database_application * dataBase;
 
     Home * redirect_toHome = new Home();
+
+    Register * redirect_toRegister;
 
 
 
