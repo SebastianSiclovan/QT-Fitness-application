@@ -1,9 +1,9 @@
 #include "login.h"
 #include "ui_login.h"
 
-#include "home.h"
 #include "register.h"
 
+QString Login::email = "";
 Login::Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)
@@ -16,6 +16,12 @@ Login::~Login()
 {
     delete ui;
 }
+
+QString Login::get_Email()
+{
+    return email;
+}
+
 
 bool Login::check_loginFields()
 {
@@ -54,11 +60,8 @@ void Login::on_pushButton_loginBtn_clicked()
         {
             QMessageBox::information(this, "Login", "Successful login");
             hide();
+            redirect_toHome = new Home();
             redirect_toHome->show();
-
-
-
-
 
         }
         else

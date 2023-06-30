@@ -12,6 +12,7 @@
 #include "home.h"
 
 class Register;
+class Home;
 
 namespace Ui {
 class Login;
@@ -26,6 +27,10 @@ public:
     explicit Login(QWidget *parent = nullptr);
     ~Login();
 
+    QString get_Email();
+
+
+
 private slots:
     void on_pushButton_loginBtn_clicked();
 
@@ -35,15 +40,16 @@ private:
     bool check_loginFields();
 
 
-private:
+public:
     Ui::Login *ui;
 
-    QString email;
+
+    static QString email;
     QString password;
 
     Database_application * dataBase;
 
-    Home * redirect_toHome = new Home();
+    Home * redirect_toHome;
 
     Register * redirect_toRegister;
 

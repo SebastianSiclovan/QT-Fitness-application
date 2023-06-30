@@ -86,6 +86,33 @@ void Database_application::database_addUserData_atRegister(std::list<QString> & 
     query.exec();
 }
 
+std::vector<QString> Database_application::get_firstName_and_lastName(QString email_fromLogin)
+{
+    QSqlQuery query;
+
+    QString firstName;
+    QString lastName;
+
+    std::vector<QString> data_fromQuery;
+
+    QString select_interogation =  "SELECT FirstName, LastName FROM users where Email = '"+ email_fromLogin +"'";
+
+    if(query.exec(select_interogation))
+    {
+        while (query.next())
+        {
+            firstName = query.value(0).toString();
+            lastName = query.value(1).toString();
+        }
+    }
+
+    data_fromQuery = {firstName, lastName};
+
+    return data_fromQuery;
+
+
+}
+
 
 
 

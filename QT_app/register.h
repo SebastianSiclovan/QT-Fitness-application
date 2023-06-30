@@ -10,10 +10,12 @@
 
 
 #include "Interfaces/Register_interface.h"
+#include "Login.h"
 
 #include <list>
+#include <vector>
 
-class Login;
+//class Login;
 
 namespace Ui {
 class Register;
@@ -26,13 +28,6 @@ class Register : public QDialog, public Register_interface
 public:
     explicit Register(QWidget *parent = nullptr);
     ~Register();
-
-    void set_firstName(QString fName);
-    void set_lastName(QString lName);
-
-    QString get_firstName();
-    QString get_lastName();
-
 
 private slots:
 
