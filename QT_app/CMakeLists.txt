@@ -40,6 +40,10 @@ set(PROJECT_SOURCES
         home.h
         home.cpp
         home.ui
+
+        BMI_calculator.h
+        BMI_calculator.cpp
+        BMI_calculator.ui
         ${TS_FILES}
 )
 
