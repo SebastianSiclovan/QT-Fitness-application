@@ -39,6 +39,9 @@ Home::~Home()
 
 void Home::on_FoodOrganizer_btn_clicked()
 {
+    redirect_toFoodOrganizer = new FoodOrganizer();
+    hide();
+    redirect_toFoodOrganizer->show();
 
 }
 

@@ -7,6 +7,7 @@
 #include "Login.h"
 #include "bmi_calculator.h"
 #include "bmr_calculator.h"
+#include "foodorganizer.h"
 #include "database_application.h"
 
 class Login;
@@ -38,6 +39,7 @@ private:
 
     BMI_calculator * redirect_toBMIcalc;
     BMR_calculator * redirect_toBMRcalc;
+    FoodOrganizer * redirect_toFoodOrganizer;
 
 
     Database_application * dB;
