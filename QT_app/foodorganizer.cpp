@@ -6,6 +6,7 @@ FoodOrganizer::FoodOrganizer(QWidget *parent) :
     ui(new Ui::FoodOrganizer)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Sebastian's app - Food Organizer");
 }
 
 FoodOrganizer::~FoodOrganizer()
