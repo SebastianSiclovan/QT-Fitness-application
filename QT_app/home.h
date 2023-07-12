@@ -5,6 +5,8 @@
 #include <QDebug>
 
 #include "Login.h"
+#include "bmi_calculator.h"
+#include "bmr_calculator.h"
 #include "database_application.h"
 
 class Login;
@@ -23,8 +25,19 @@ public:
 
     void display_email(QString from_login);
 
+private slots:
+
+    void on_FoodOrganizer_btn_clicked();
+
+    void on_BMIcalculator_btn_clicked();
+
+    void on_BMRcalculator_btn_clicked();
+
 private:
     Ui::Home *ui;
+
+    BMI_calculator * redirect_toBMIcalc;
+    BMR_calculator * redirect_toBMRcalc;
 
 
     Database_application * dB;

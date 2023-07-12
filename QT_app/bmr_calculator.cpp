@@ -6,6 +6,7 @@ BMR_calculator::BMR_calculator(QWidget *parent) :
     ui(new Ui::BMR_calculator)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Sebastian's app - BMR calculator");
 }
 
 BMR_calculator::~BMR_calculator()

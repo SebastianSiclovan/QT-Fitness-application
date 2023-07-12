@@ -24,7 +24,7 @@ Home::Home(QWidget *parent) :
     fName = temporary_data[0];
     lName = temporary_data[1];
 
-    QString concat   = "Welcome, " + fName + " " + lName + " !";
+    QString concat   = "Welcome to the fitness app, " + fName + " " + lName + " !";
     ui->label_homeWelcome->setText(concat);
 
 }
@@ -34,3 +34,29 @@ Home::~Home()
 {
     delete ui;
 }
+
+
+
+void Home::on_FoodOrganizer_btn_clicked()
+{
+
+}
+
+
+void Home::on_BMIcalculator_btn_clicked()
+{
+    redirect_toBMIcalc = new BMI_calculator();
+    hide();
+    redirect_toBMIcalc->show();
+
+}
+
+
+void Home::on_BMRcalculator_btn_clicked()
+{
+    redirect_toBMRcalc = new BMR_calculator();
+    hide();
+    redirect_toBMRcalc->show();
+
+}
+

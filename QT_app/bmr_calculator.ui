@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>BMR_calculator</class>
- <widget name="BMR_calculator" class="QDialog">
+ <widget class="QDialog" name="BMR_calculator">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>628</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="windowTitle">
