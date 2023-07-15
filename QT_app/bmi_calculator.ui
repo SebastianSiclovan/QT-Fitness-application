@@ -81,7 +81,7 @@
     <item>
      <widget class="QPushButton" name="checkCategory_btn">
       <property name="text">
-       <string>Check category</string>
+       <string>Check BMI and category</string>
       </property>
      </widget>
     </item>
@@ -101,7 +101,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>70</x>
