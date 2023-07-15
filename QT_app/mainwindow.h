@@ -14,8 +14,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    static MainWindow & get_instance();
+
+    // Disable copy constructor and equal assignment operator
+    MainWindow(const MainWindow &) = delete;
+    MainWindow& operator=(const MainWindow&) = delete;
 
 private slots:
     void on_pushButton_Login_clicked();
@@ -23,6 +26,9 @@ private slots:
     void on_pushButton_2_clicked();
 
 private:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
     Ui::MainWindow *ui;
 
     Register *registerObj;

@@ -6,12 +6,18 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Sebastian's app - First interaction");
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+MainWindow & MainWindow::get_instance()
+{
+    static MainWindow instance;
+    return instance;
 }
 
 
