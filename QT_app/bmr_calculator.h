@@ -2,6 +2,15 @@
 #define BMR_CALCULATOR_H
 
 #include <QDialog>
+#include <QDebug>
+#include <QMessageBox>
+#include <algorithm>
+#include <vector>
+
+struct male_coefs;
+struct female_coefs;
+
+
 
 namespace Ui {
 class BMR_calculator;
@@ -15,8 +24,38 @@ public:
     explicit BMR_calculator(QWidget *parent = nullptr);
     ~BMR_calculator();
 
+
+private slots:
+
+    bool check_BMRcalculator_fields();
+
+    void on_checkCalories_btn_clicked();
+
+    float calculate_BMR(QString Gender, int age, float height, float weight);
+
+    float calculate_activity(QString activity_level, float BMR);
+
+    //float gain_or_lose(QString goal, QString number_poundPerWeek, float activity_level);
+
+
+
 private:
     Ui::BMR_calculator *ui;
+
+    QString age;
+    QString gender;
+    QString weight;
+    QString height;
+    QString activity_level;
+    QString goal;
+
+    bool warning_field;
+
+    std::vector<float> caloricRequirement_coef = {1.55, 1.725, 1.9, 1.375, 1.2};
+
+    BMR_calculator * bmr_calculator;
+
+
 };
 
 #endif // BMR_CALCULATOR_H
