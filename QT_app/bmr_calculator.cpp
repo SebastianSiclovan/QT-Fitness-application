@@ -27,6 +27,9 @@ BMR_calculator::BMR_calculator(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("Sebastian's app - BMR calculator");
 
+    ui->lineEdit_numberOfPounds->setEnabled(false);
+    ui->label_setCalories->setVisible(false);
+
 
 
 }
@@ -110,8 +113,8 @@ float BMR_calculator::calculate_activity(QString activity_level, float BMR)
     return activity_result;
 
 }
-/*
-float BMR_calculator::gain_or_lose(QString goal, QString number_poundPerWeek, float activity_level)
+
+float BMR_calculator::gain_or_lose(QString goal, int number_poundPerWeek, float activity_level)
 {
     float calories;
     if (goal == "lose")
@@ -140,19 +143,22 @@ float BMR_calculator::gain_or_lose(QString goal, QString number_poundPerWeek, fl
     {
         // do nothing
     }
+
+    return calories;
 }
-*/
 
 
 
 bool BMR_calculator::check_BMRcalculator_fields()
 {
+
     this->age = ui->lineEdit_age->text();
     this->gender = ui->lineEdit_gender->text();
     this->weight = ui->lineEdit_weight->text();
     this->height = ui->lineEdit_height->text();
     this->goal = ui->lineEdit_goal->text();
     this->activity_level = ui->lineEdit_activityLevel->text();
+    this->numberOfPounds = ui->lineEdit_numberOfPounds->text();
 
     this->warning_field = false;
 
@@ -168,6 +174,12 @@ bool BMR_calculator::check_BMRcalculator_fields()
         warning_field = true;
     }
 
+    if (gender != "male" && gender != "female")
+    {
+        QMessageBox::warning(this, "", "In the gender field you can enter only the gender 'male' or 'female'.");
+        warning_field = true;
+    }
+
     if(weight.isEmpty())
     {
         QMessageBox::warning(this, "BMR_calculator", "Please fill in the weight");
@@ -180,17 +192,54 @@ bool BMR_calculator::check_BMRcalculator_fields()
         warning_field = true;
     }
 
+    if(activity_level.isEmpty())
+    {
+        QMessageBox::warning(this, "BMR_calculator", "Please fill in the activity level");
+        warning_field = true;
+    }
+
+    if (activity_level != "none" && activity_level != "light" && activity_level != "moderate" && activity_level != "heavy" && activity_level != "extreme")
+    {
+        QMessageBox::warning(this, "", "In the activity level field you can enter only 'none', 'light', 'moderate', 'heavy', 'extreme' activity.");
+    }
+
     if(goal.isEmpty())
     {
         QMessageBox::warning(this, "BMR_calculator", "Please fill in the goal");
         warning_field = true;
     }
 
-    if(activity_level.isEmpty())
+    if (goal != "lose" && goal != "gain")
     {
-        QMessageBox::warning(this, "BMR_calculator", "Please fill in the activity level");
+        QMessageBox::warning(this, "", "In the goal field you can enter only the goal type 'lose' or 'gain'.");
         warning_field = true;
     }
+
+    if (goal == "gain")
+    {
+        ui->lineEdit_numberOfPounds->setEnabled(true);
+
+        if (numberOfPounds.isEmpty())
+        {
+            QMessageBox::information(this, "", "Because your goal is to gain please fill in the value 1 or 2 in the field under 'goal' to specify how many pounds you want to put on per week.");
+        }
+        else
+        {
+            if (numberOfPounds != "1" && numberOfPounds != "2")
+            {
+                QMessageBox::warning(this, "", "The number of pounds can be only 1 or 2");
+
+                warning_field = true;
+            }
+
+        }
+    }
+    else
+    {
+        ui->lineEdit_numberOfPounds->setEnabled(false);
+    }
+
+
 
     return warning_field;
 
@@ -204,7 +253,14 @@ void BMR_calculator::on_checkCalories_btn_clicked()
     if (check_BMRcalculator_fields() == false)
     {
         float obtained_bmr = calculate_BMR(this->gender, this->age.toFloat(), this->height.toFloat(), this->weight.toFloat());
-        qDebug() << calculate_activity(this->activity_level, obtained_bmr);
+        float obtained_activity = calculate_activity(this->activity_level, obtained_bmr);
+        float obtained_calories = gain_or_lose(this->goal, this->numberOfPounds.toInt(), obtained_activity);
+
+        if (!numberOfPounds.isEmpty())
+        {
+            ui->label_setCalories->setVisible(true);
+            ui->label_setCalories->setText("Your daily caloric goals should be " + QString::number(obtained_calories));
+        }
     }
 
 

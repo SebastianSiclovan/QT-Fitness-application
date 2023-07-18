@@ -35,7 +35,7 @@ private slots:
 
     float calculate_activity(QString activity_level, float BMR);
 
-    //float gain_or_lose(QString goal, QString number_poundPerWeek, float activity_level);
+    float gain_or_lose(QString goal, int number_poundPerWeek, float activity_level);
 
 
 
@@ -48,6 +48,7 @@ private:
     QString height;
     QString activity_level;
     QString goal;
+    QString numberOfPounds;
 
     bool warning_field;
 
