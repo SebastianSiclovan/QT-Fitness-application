@@ -173,7 +173,7 @@ bool BMR_calculator::check_BMRcalculator_fields()
         QMessageBox::warning(this, "BMR_calculator", "Please fill in the gender");
         warning_field = true;
     }
-
+   // gender != "male" && gender != "female"
     if (gender != "male" && gender != "female")
     {
         QMessageBox::warning(this, "", "In the gender field you can enter only the gender 'male' or 'female'.");
@@ -225,7 +225,8 @@ bool BMR_calculator::check_BMRcalculator_fields()
         }
         else
         {
-            if (numberOfPounds != "1" && numberOfPounds != "2")
+            // numberOfPounds != "1" && numberOfPounds != "2"
+            if ([](QString numberOfPounds){if (numberOfPounds != "1" && numberOfPounds != "2"){return true;}else{return false;}}(numberOfPounds))
             {
                 QMessageBox::warning(this, "", "The number of pounds can be only 1 or 2");
 
