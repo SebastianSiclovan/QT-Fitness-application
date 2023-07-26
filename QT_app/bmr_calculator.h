@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <algorithm>
 #include <vector>
+#include <list>
 
 struct male_coefs;
 struct female_coefs;
@@ -36,6 +37,9 @@ private slots:
     float calculate_activity(QString activity_level, float BMR);
 
     float gain_or_lose(QString goal, int number_poundPerWeek, float activity_level);
+
+    bool checkVariants_activityLevels(QString current_activityLevel);
+
 
 
 

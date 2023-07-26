@@ -147,6 +147,22 @@ float BMR_calculator::gain_or_lose(QString goal, int number_poundPerWeek, float 
     return calories;
 }
 
+bool BMR_calculator::checkVariants_activityLevels(QString current_activityLevel)
+{
+    std::list<QString> available_activityLevels = {"none", "light", "moderate", "heavy", "extreme"};
+    bool warning = true;
+
+    for(auto & element : available_activityLevels)
+    {
+        if (std::equal_to<QString> () (current_activityLevel, element))
+        {
+            warning = false;
+        }
+    }
+
+    return warning;
+}
+
 
 
 bool BMR_calculator::check_BMRcalculator_fields()
@@ -173,8 +189,8 @@ bool BMR_calculator::check_BMRcalculator_fields()
         QMessageBox::warning(this, "BMR_calculator", "Please fill in the gender");
         warning_field = true;
     }
-   // gender != "male" && gender != "female"
-    if (gender != "male" && gender != "female")
+
+    if (std::not_equal_to<QString> () (gender, "male") && std::not_equal_to<QString> () (gender, "female"))
     {
         QMessageBox::warning(this, "", "In the gender field you can enter only the gender 'male' or 'female'.");
         warning_field = true;
@@ -198,7 +214,7 @@ bool BMR_calculator::check_BMRcalculator_fields()
         warning_field = true;
     }
 
-    if (activity_level != "none" && activity_level != "light" && activity_level != "moderate" && activity_level != "heavy" && activity_level != "extreme")
+    if (std::equal_to<bool> () (checkVariants_activityLevels(activity_level), true))
     {
         QMessageBox::warning(this, "", "In the activity level field you can enter only 'none', 'light', 'moderate', 'heavy', 'extreme' activity.");
     }
@@ -209,13 +225,13 @@ bool BMR_calculator::check_BMRcalculator_fields()
         warning_field = true;
     }
 
-    if (goal != "lose" && goal != "gain")
+    if (std::not_equal_to<QString>() (goal, "lose") && std::not_equal_to<QString>() (goal, "gain"))
     {
         QMessageBox::warning(this, "", "In the goal field you can enter only the goal type 'lose' or 'gain'.");
         warning_field = true;
     }
 
-    if (goal == "gain")
+    if (std::equal_to<QString>() (goal, "gain"))
     {
         ui->lineEdit_numberOfPounds->setEnabled(true);
 
@@ -226,7 +242,7 @@ bool BMR_calculator::check_BMRcalculator_fields()
         else
         {
             // numberOfPounds != "1" && numberOfPounds != "2"
-            if ([](QString numberOfPounds){if (numberOfPounds != "1" && numberOfPounds != "2"){return true;}else{return false;}}(numberOfPounds))
+            if ([](QString numberOfPounds)->bool{if (numberOfPounds != "1" && numberOfPounds != "2"){return true;}else{return false;}}(numberOfPounds))
             {
                 QMessageBox::warning(this, "", "The number of pounds can be only 1 or 2");
 
@@ -249,7 +265,6 @@ bool BMR_calculator::check_BMRcalculator_fields()
 
 void BMR_calculator::on_checkCalories_btn_clicked()
 {
-
 
     if (check_BMRcalculator_fields() == false)
     {
