@@ -12,6 +12,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Sql)
 
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+
+
 set(TS_FILES QT_app_en_GB.ts)
 
 set(PROJECT_SOURCES
@@ -44,8 +49,17 @@ set(PROJECT_SOURCES
         BMI_calculator.h
         BMI_calculator.cpp
         BMI_calculator.ui
+
+        BMR_calculator.h
+        BMR_calculator.cpp
+        BMR_calculator.ui
+
+        FoodOrganizer.h
+        FoodOrganizer.cpp
+        FoodOrganizer.ui
         ${TS_FILES}
 )
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(QT_app
@@ -74,7 +88,10 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(QT_app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
+
+
+target_link_libraries(QT_app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql ${OpenCV_LIBS})
+
 
 set_target_properties(QT_app PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
