@@ -57,6 +57,13 @@ set(PROJECT_SOURCES
         FoodOrganizer.h
         FoodOrganizer.cpp
         FoodOrganizer.ui
+
+        VideoCapture.h
+        VideoCapture.cpp
+        VideoCapture.ui
+
+        CameraCapture.h
+        CameraCapture.cpp
         ${TS_FILES}
 )
 
