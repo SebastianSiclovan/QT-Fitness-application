@@ -6,13 +6,50 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>672</width>
-    <height>525</height>
+    <width>719</width>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QPushButton" name="redirect_toCamera_btn">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>140</y>
+     <width>241</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Check healthy food with video camera</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>701</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>In this section of the app you can find out which foods are healthy via the video camera at your disposition.</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
