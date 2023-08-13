@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QDebug>
 
+
+
 namespace Ui {
 class BMI_calculator;
 }
@@ -20,14 +22,6 @@ public:
 private slots:
     void on_checkCategory_btn_clicked();
 
-    bool check_BMIcalculator_Fields();
-
-    float calculate_BMI(float height, float weight);
-
-    QString set_weightCategory(float BMI);
-
-
-
 private:
     Ui::BMI_calculator *ui;
 
@@ -36,6 +30,16 @@ private:
     QString height;
 
     BMI_calculator * single_obj;
+
+    template <typename T>
+    T calculate_BMI(T height, T weight);
+
+    template <typename T>
+    QString set_weightCategory(T BMI);
+
+    bool check_BMIcalculator_Fields();
+
+
 };
 
 #endif // BMI_CALCULATOR_H

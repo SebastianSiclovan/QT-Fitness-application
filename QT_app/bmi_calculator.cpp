@@ -14,15 +14,15 @@ BMI_calculator::~BMI_calculator()
     delete ui;
 }
 
-float BMI_calculator::calculate_BMI(float height, float weight)
+template<typename T>
+T BMI_calculator::calculate_BMI(T height, T weight)
 {
-    float result_BMI = weight / (height*height);
-
+    T result_BMI = weight / (height*height);
     return result_BMI;
-
 }
 
-QString BMI_calculator::set_weightCategory(float BMI)
+template <typename T>
+QString BMI_calculator::set_weightCategory(T BMI)
 {
     QString category;
 
@@ -47,6 +47,8 @@ QString BMI_calculator::set_weightCategory(float BMI)
 }
 
 
+
+
 bool BMI_calculator::check_BMIcalculator_Fields()
 {
     this->warning_field = false;
@@ -58,12 +60,21 @@ bool BMI_calculator::check_BMIcalculator_Fields()
     {
         QMessageBox::warning(this, "BMI_calculator", "Please fill in the weight");
         warning_field = true;
+
+    }
+    else
+    {
+        ui->lineEdit_weight->setEnabled(false);
     }
 
     if (height.isEmpty())
     {
         QMessageBox::warning(this, "BMI_calculator", "Please fill in the height");
         warning_field = true;
+    }
+    else
+    {
+        ui->lineEdit_height->setEnabled(false);
     }
 
     return warning_field;
@@ -80,8 +91,8 @@ void BMI_calculator::on_checkCategory_btn_clicked()
     if(check_BMIcalculator_Fields() == false)
     {
         QMessageBox::information(this, "BMI_calculator", "Your category and BMI are now available!");
-        float BMI = single_obj->calculate_BMI(this->height.toFloat(), this->weight.toFloat());
-        QString weightCategory = single_obj->set_weightCategory(BMI);
+        float BMI = single_obj->calculate_BMI<float>(this->height.toFloat(), this->weight.toFloat());
+        QString weightCategory = single_obj->set_weightCategory<float>(BMI);
         ui->label_setBMI->setText(QString::number(BMI));
         ui->label_setCategory->setText(weightCategory);
 
