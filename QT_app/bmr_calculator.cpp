@@ -30,8 +30,6 @@ BMR_calculator::BMR_calculator(QWidget *parent) :
     ui->lineEdit_numberOfPounds->setEnabled(false);
     ui->label_setCalories->setVisible(false);
 
-
-
 }
 
 BMR_calculator::~BMR_calculator()
@@ -39,14 +37,15 @@ BMR_calculator::~BMR_calculator()
     delete ui;
 }
 
-float BMR_calculator::calculate_BMR(QString Gender, int age, float height, float weight)
+template <typename T>
+T BMR_calculator::calculate_BMR(QString Gender, int age, T height, T weight)
 {
-    float c; // common baseline value used in estimating female/male BMR
-    float hm; // height multiplication (expressed in meters); 1 inch = 0.0254 metri.
-    float vm; // weight multiplication (expressed in kilograms)
-    float am; // age multiplication
+    T c; // common baseline value used in estimating female/male BMR
+    T hm; // height multiplication (expressed in meters); 1 inch = 0.0254 metri.
+    T vm; // weight multiplication (expressed in kilograms)
+    T am; // age multiplication
 
-    float BMR;
+    T BMR;
 
     male_coefs * m_coef = new male_coefs;
     female_coefs * f_coef = new female_coefs;
@@ -76,9 +75,10 @@ float BMR_calculator::calculate_BMR(QString Gender, int age, float height, float
     return BMR;
 }
 
-float BMR_calculator::calculate_activity(QString activity_level, float BMR)
+template <typename T>
+T BMR_calculator::calculate_activity(QString activity_level, T BMR)
 {
-    float activity_result;
+    T activity_result;
     std::vector<float>::iterator itr_begin = caloricRequirement_coef.begin();
     std::vector<float>::iterator itr_end = caloricRequirement_coef.end();
 
@@ -114,9 +114,10 @@ float BMR_calculator::calculate_activity(QString activity_level, float BMR)
 
 }
 
-float BMR_calculator::gain_or_lose(QString goal, int number_poundPerWeek, float activity_level)
+template <typename T>
+T BMR_calculator::gain_or_lose(QString goal, int number_poundPerWeek, T activity_level)
 {
-    float calories;
+    T calories;
     if (goal == "lose")
     {
         calories = activity_level - 500;
@@ -268,9 +269,9 @@ void BMR_calculator::on_checkCalories_btn_clicked()
 
     if (check_BMRcalculator_fields() == false)
     {
-        float obtained_bmr = calculate_BMR(this->gender, this->age.toFloat(), this->height.toFloat(), this->weight.toFloat());
-        float obtained_activity = calculate_activity(this->activity_level, obtained_bmr);
-        float obtained_calories = gain_or_lose(this->goal, this->numberOfPounds.toInt(), obtained_activity);
+        float obtained_bmr = calculate_BMR<float>(this->gender, this->age.toFloat(), this->height.toFloat(), this->weight.toFloat());
+        float obtained_activity = calculate_activity<float>(this->activity_level, obtained_bmr);
+        float obtained_calories = gain_or_lose<float>(this->goal, this->numberOfPounds.toInt(), obtained_activity);
 
         if (!numberOfPounds.isEmpty())
         {

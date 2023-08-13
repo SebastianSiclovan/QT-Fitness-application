@@ -27,18 +27,22 @@ public:
 
 
 private slots:
-
-    bool check_BMRcalculator_fields();
-
     void on_checkCalories_btn_clicked();
 
-    float calculate_BMR(QString Gender, int age, float height, float weight);
+private:
 
-    float calculate_activity(QString activity_level, float BMR);
+    template <typename T>
+    T calculate_BMR(QString Gender, int age, T height, T weight);
 
-    float gain_or_lose(QString goal, int number_poundPerWeek, float activity_level);
+    template <typename T>
+    T calculate_activity(QString activity_level, T BMR);
+
+    template <typename T>
+    T gain_or_lose(QString goal, int number_poundPerWeek, T activity_level);
 
     bool checkVariants_activityLevels(QString current_activityLevel);
+
+    bool check_BMRcalculator_fields();
 
 
 
@@ -59,7 +63,6 @@ private:
     std::vector<float> caloricRequirement_coef = {1.55, 1.725, 1.9, 1.375, 1.2};
 
     BMR_calculator * bmr_calculator;
-
 
 };
 
